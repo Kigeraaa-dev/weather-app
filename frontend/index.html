@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <style>
+      /* Reset default browser styles */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #1a1a2e;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+      }
+      /* Style placeholder text in search input */
+      ::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      /* Make all inputs and buttons use the same font */
+      input, button {
+        font-family: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- React mounts itself into this div -->
+    <div id="root"></div>
+
+    <!-- Vite automatically injects the compiled React app here -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

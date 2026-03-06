@@ -1,0 +1,8 @@
+com\weather\model\WeatherResponse.class
+com\weather\model\WeatherResponse$ForecastDay.class
+com\weather\config\CorsConfig.class
+com\weather\service\WeatherService.class
+com\weather\service\WeatherService$GeoResult.class
+com\weather\controller\WeatherController.class
+com\weather\WeatherApplication.class
+com\weather\config\CorsConfig$1.class
