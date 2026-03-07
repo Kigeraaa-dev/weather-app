@@ -63,24 +63,9 @@ public class WeatherController {
                     .body(Map.of("error", e.getMessage()));
             }
 
-            return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)  // HTTP 500
-                .body(Map.of("error", "Failed to get weather: " + e.getMessage()));
+        return ResponseEntity
+         .status(HttpStatus.INTERNAL_SERVER_ERROR)
+          .body(Map.of("error", "something went wrong please try again"));
         }
-    }
-
-    /**
-     * GET /api/weather/health
-     *
-     * Test endpoint — use this FIRST to confirm the server is running.
-     * Open in browser: http://localhost:8080/api/weather/health
-     * Expected:        { "status": "OK", "message": "Weather API is running!" }
-     */
-    @GetMapping("/health")
-    public ResponseEntity<Map<String, String>> health() {
-        return ResponseEntity.ok(Map.of(
-            "status",  "OK",
-            "message", "Weather API is running!"
-        ));
     }
 }
