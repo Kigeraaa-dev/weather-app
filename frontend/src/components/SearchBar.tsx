@@ -11,10 +11,10 @@ import { useState, KeyboardEvent } from "react";
 import { TempUnit } from "../types/weather";
 
 interface Props {
-  onSearch:      (city: string) => void;  // called when user submits search
-  unit:          TempUnit;                // current selected unit
-  onUnitChange:  (unit: TempUnit) => void; // called when user switches unit
-  loading:       boolean;                 // true while API request is in progress
+  onSearch:      (city: string) => void;  
+  unit:          TempUnit;                
+  onUnitChange:  (unit: TempUnit) => void; 
+  loading:       boolean;                 
 }
 
 export default function SearchBar({ onSearch, unit, onUnitChange, loading }: Props) {

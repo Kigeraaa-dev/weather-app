@@ -17,7 +17,7 @@
 
 import { WeatherData, TempUnit } from "../types/weather";
 
-// ── Temperature helpers ───────────────────────────────────────────────────────
+// Temperature helpers 
 
 /**
  * convertTemp
@@ -55,7 +55,7 @@ export function formatTemp(celsius: number, unit: TempUnit): string {
   return `${convertTemp(celsius, unit)}°${unit}`;
 }
 
-// ── Icon URL helper ───────────────────────────────────────────────────────────
+// Icon URL helper 
 
 /**
  * getIconUrl
