@@ -21,18 +21,9 @@ export default function WeatherStats({ weather }: Props) {
   );
 }
 
-// ── Wind Card (I) ─────────────────────────────────────────────────────────────
+// Wind Card (I) 
 
 function WindCard({ speed, direction }: { speed: number; direction: string }) {
-
-  // Map compass direction to rotation degrees for the arrow icon
-  const rotations: Record<string, number> = {
-    N:0, NNE:22, NE:45, ENE:67,
-    E:90, ESE:112, SE:135, SSE:157,
-    S:180, SSW:202, SW:225, WSW:247,
-    W:270, WNW:292, NW:315, NNW:337,
-  };
-  const rotation = rotations[direction] ?? 0;
 
   return (
     <div style={{
@@ -51,29 +42,20 @@ function WindCard({ speed, direction }: { speed: number; direction: string }) {
         {speed}
         <span style={{ fontSize: "20px", fontWeight: "400", marginLeft: "4px" }}>km/h</span>
       </div>
-
-      {/* Direction with rotating arrow */}
-      <div style={{ display: "flex", alignItems: "center", gap: "8px",
-                    marginTop: "12px", opacity: 0.8 }}>
-        <div style={{
-          width: "28px", height: "28px",
-          borderRadius: "50%",
-          border: "2px solid rgba(255,255,255,0.5)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: "14px",
-          transform: `rotate(${rotation}deg)`,
-          transition: "transform 0.5s ease",
-        }}>
-          ↑
-        </div>
+      <div style={{
+  marginTop: "12px",
+  opacity: 0.8,
+  fontSize: "14px"
+}}>
+  {/* just showing direction as text, rotation was too complicated */}
+  Direction: {direction}
         <span style={{ fontSize: "14px", fontWeight: "600" }}>{direction}</span>
       </div>
     </div>
   );
 }
 
-// ── Humidity Card (J) ─────────────────────────────────────────────────────────
-
+// Humidity Card (J) 
 function HumidityCard({ humidity }: { humidity: number }) {
 
   // Give a descriptive label based on humidity level
