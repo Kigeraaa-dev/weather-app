@@ -89,7 +89,7 @@ export default function App() {
    * Called when user clicks GO or presses Enter.
    * async/await lets us "pause" and wait for the API response.
    */
-  const handleSearch = async (city: string) => {
+  async function handleSearch(city: string) {
     setLoading(true);
     setError(null);
 
@@ -97,12 +97,9 @@ export default function App() {
       const data = await fetchWeather(city);
       setWeather(data);
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Something went wrong. Please try again."
-      );
-    } finally {
+  console.log("error fetching weather", err);
+  setError("Could not get weather data, please try again");
+}finally {
       setLoading(false);  // always stop loading whether success or error
     }
   };
@@ -112,7 +109,8 @@ export default function App() {
   const background = weather
     ? getBackground(weather.description)
     : "linear-gradient(135deg, #3a7bd5 0%, #3a6073 100%)";
-
+    
+// console.log("weather state:", weather)
   return (
     <div style={{
       minHeight:       "100vh",
