@@ -81,7 +81,7 @@ export function getIconUrl(iconCode: string): string {
   return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 }
 
-// ── Main fetch function ───────────────────────────────────────────────────────
+//Main fetch function 
 
 /**
  * fetchWeather
@@ -113,18 +113,10 @@ export async function fetchWeather(city: string): Promise<WeatherData> {
     headers: { "Content-Type": "application/json" },
   });
 
-  // Check if the server returned an error status (anything outside 200-299)
-  if (!response.ok) {
-    // Try to read the error message from the Java backend
-    let errorMessage = `Server error: ${response.status}`;
-    try {
-      const body = await response.json();
-      if (body.error) errorMessage = body.error;
-    } catch {
-      // If we can't parse the error, use the generic message above
-    }
-    throw new Error(errorMessage);
-  }
+  // check if the request worked
+if (!response.ok) {
+  throw new Error("could not get weather data, status: " + response.status);
+}
 
   // Parse the JSON response body into our WeatherData TypeScript type
   const data: WeatherData = await response.json();
