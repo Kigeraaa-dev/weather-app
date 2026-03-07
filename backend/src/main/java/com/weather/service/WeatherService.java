@@ -2,6 +2,7 @@ package com.weather.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weather.controller.WeatherController;
 import com.weather.model.WeatherResponse;
 import com.weather.model.WeatherResponse.ForecastDay;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.Spring;
 
 /**
  * WeatherService
@@ -58,30 +61,15 @@ public class WeatherService {
     /** Jackson — parses JSON strings into Java objects */
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    // ── Public method ───────────────────────────────────────────────────────
-
-    /**
-     * getWeatherForCity
-     *
-     * Called by WeatherController. Runs the two-step process.
-     *
-     * @param cityName  e.g. "Nairobi"
-     * @return          WeatherResponse (Spring converts this to JSON)
-     * @throws Exception if city not found or API call fails
-     */
+    // this method gets the weather for a city
+// it calls the geocoding api first then the forecast api
+// throws an exception if the city is not found
     public WeatherResponse getWeatherForCity(String cityName) throws Exception {
-        GeoResult geo = geocodeCity(cityName);
-        return fetchWeather(geo);
+     Object[] geo = geocodeCity(cityName);
+return fetchWeather(geo);  
     }
 
-    // ── Private helpers ─────────────────────────────────────────────────────
-
-    /**
-     * Record to hold geocoding result.
-     * Records are a Java 16+ feature — a compact immutable data holder.
-     */
-    private record GeoResult(String city, String country, double lat, double lon) {}
-
+    
     /**
      * geocodeCity — STEP 1
      *
@@ -92,7 +80,7 @@ public class WeatherService {
      * Response JSON (array):
      * [{ "name": "Nairobi", "lat": -1.2921, "lon": 36.8219, "country": "KE" }]
      */
-    private GeoResult geocodeCity(String cityName) throws Exception {
+    private Object[] geocodeCity(String cityName) throws Exception {
         String encoded = URLEncoder.encode(cityName, StandardCharsets.UTF_8);
         String url = BASE_URL + "/geo/1.0/direct?q=" + encoded + "&limit=1&appid=" + apiKey;
 
@@ -107,18 +95,21 @@ public class WeatherService {
         }
 
         JsonNode r = arr.get(0);
-        return new GeoResult(
-            r.get("name").asText(),
-            r.get("country").asText(),
-            r.get("lat").asDouble(),
-            r.get("lon").asDouble()
-        );
+       // store values in variables first
+String foundCity    = r.get("name").asText();
+String foundCountry = r.get("country").asText();
+double foundLat     = r.get("lat").asDouble();
+double foundLon     = r.get("lon").asDouble();
+
+// 0=city, 1=country, 2=lat, 3=lon
+Object[] result = { foundCity, foundCountry, foundLat, foundLon };
+return result; 
     }
 
     /**
      * fetchWeather — STEP 2
      *
-     * Calls the OpenWeatherMap 5-Day/3-Hour Forecast API.
+     * Calls the OpenWeatherMap 5-Day/3-Hour Forecast API
      * Returns 40 weather entries (one every 3 hours for 5 days).
      *
      * URL: https://api.openweathermap.org/data/2.5/forecast?lat=-1.29&lon=36.82&units=metric&appid=KEY
@@ -131,12 +122,12 @@ public class WeatherService {
      *   list[16]  → day after        (16 × 3hr = 48hr ahead)
      *   list[24]  → 3 days ahead     (24 × 3hr = 72hr ahead)
      */
-    private WeatherResponse fetchWeather(GeoResult geo) throws Exception {
+    private WeatherResponse fetchWeather(Object[] geo) throws Exception {
         String url = BASE_URL + "/data/2.5/forecast?"
-                   + "lat=" + geo.lat()
-                   + "&lon=" + geo.lon()
-                   + "&units=metric"
-                   + "&appid=" + apiKey;
+           + "lat=" + geo[2]
+           + "&lon=" + geo[3]
+           + "&units=metric"
+           + "&appid=" + apiKey;
 
         String   json = sendGet(url);
         JsonNode root = objectMapper.readTree(json);
@@ -144,11 +135,10 @@ public class WeatherService {
         JsonNode now  = list.get(0);        // first entry = current weather
 
         WeatherResponse res = new WeatherResponse();
-        res.setCity(geo.city());
-        res.setCountry(geo.country());
-        res.setLatitude(geo.lat());
-        res.setLongitude(geo.lon());
-
+        res.setCity((String) geo[0]);
+        res.setCountry((String) geo[1]);
+        res.setLatitude((double) geo[2]);
+        res.setLongitude((double) geo[3]);
         // Temperature — Celsius because we set units=metric
         res.setTemp(roundOne(now.get("main").get("temp").asDouble()));
 
