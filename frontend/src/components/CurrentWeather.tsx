@@ -34,15 +34,15 @@ export default function CurrentWeather({ weather, unit }: Props) {
         src={getIconUrl(weather.iconCode)}
         alt={weather.description}
         style={{
-          width:  "100px",
-          height: "100px",
+          width:  "120px",
+          height: "120px",
           filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.4))",
         }}
       />
 
       {/* E — Current temperature */}
       <div style={{
-        fontSize:      "60px",
+        fontSize:      "80px",
         fontWeight:    "800",
         letterSpacing: "-2px",
         lineHeight:    1,
@@ -53,7 +53,7 @@ export default function CurrentWeather({ weather, unit }: Props) {
 
       {/* F — Weather description */}
       <div style={{
-        fontSize:   "22px",
+        fontSize:   "28px",
         fontWeight: "400",
         opacity:    0.85,
         marginTop:  "8px",
@@ -63,13 +63,13 @@ export default function CurrentWeather({ weather, unit }: Props) {
 
       {/* G — Date and location */}
       <div style={{ marginTop: "16px" }}>
-        <div style={{ fontSize: "13px", opacity: 0.65 }}>
+        <div style={{ fontSize: "17px", opacity: 0.65 }}>
           {today}
         </div>
-        <div style={{ fontSize: "17px", fontWeight: "700", marginTop: "6px" }}>
+        <div style={{ fontSize: "22px", fontWeight: "700", marginTop: "6px" }}>
           📍 {weather.city}, {weather.country}
         </div>
-        <div style={{ fontSize: "12px", opacity: 0.55, marginTop: "2px" }}>
+        <div style={{ fontSize: "15px", opacity: 0.55, marginTop: "2px" }}>
           {weather.latitude.toFixed(2)}°, {weather.longitude.toFixed(2)}°
         </div>
       </div>

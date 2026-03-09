@@ -11,10 +11,10 @@ import { useState, KeyboardEvent } from "react";
 import { TempUnit } from "../types/weather";
 
 interface Props {
-  onSearch:      (city: string) => void;  
-  unit:          TempUnit;                
-  onUnitChange:  (unit: TempUnit) => void; 
-  loading:       boolean;                 
+  onSearch:     (city: string) => void;
+  unit:         TempUnit;
+  onUnitChange: (unit: TempUnit) => void;
+  loading:      boolean;
 }
 
 export default function SearchBar({ onSearch, unit, onUnitChange, loading }: Props) {
@@ -44,14 +44,14 @@ export default function SearchBar({ onSearch, unit, onUnitChange, loading }: Pro
         placeholder="Search city..."
         disabled={loading}
         style={{
-          flex:       1,
-          padding:    "13px 18px",
+          flex:         1,
+          padding:      "14px 18px",
           borderRadius: "12px",
-          border:     "1px solid rgba(255,255,255,0.3)",
-          background: "rgba(255,255,255,0.15)",
-          color:      "#fff",
-          fontSize:   "15px",
-          outline:    "none",
+          border:       "1px solid rgba(255,255,255,0.3)",
+          background:   "rgba(255,255,255,0.15)",
+          color:        "#fff",
+          fontSize:     "18px",
+          outline:      "none",
         }}
       />
 
@@ -60,16 +60,16 @@ export default function SearchBar({ onSearch, unit, onUnitChange, loading }: Pro
         onClick={handleGo}
         disabled={loading || !input.trim()}
         style={{
-          padding:      "13px 24px",
-          borderRadius: "12px",
-          border:       "none",
-          background:   loading ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.92)",
-          color:        "#333",
-          fontWeight:   "700",
-          fontSize:     "14px",
+          padding:       "14px 26px",
+          borderRadius:  "12px",
+          border:        "none",
+          background:    loading ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.92)",
+          color:         "#333",
+          fontWeight:    "700",
+          fontSize:      "18px",
           letterSpacing: "1px",
-          cursor:       loading ? "not-allowed" : "pointer",
-          transition:   "background 0.2s",
+          cursor:        loading ? "not-allowed" : "pointer",
+          transition:    "background 0.2s",
         }}
       >
         {loading ? "..." : "GO"}
@@ -87,12 +87,12 @@ export default function SearchBar({ onSearch, unit, onUnitChange, loading }: Pro
             key={u}
             onClick={() => onUnitChange(u)}
             style={{
-              padding:    "13px 16px",
+              padding:    "14px 18px",
               border:     "none",
               background: unit === u ? "rgba(255,255,255,0.92)" : "transparent",
               color:      unit === u ? "#333" : "#fff",
               fontWeight: "700",
-              fontSize:   "13px",
+              fontSize:   "17px",
               cursor:     "pointer",
               transition: "background 0.2s, color 0.2s",
             }}

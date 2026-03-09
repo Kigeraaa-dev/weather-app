@@ -21,10 +21,8 @@ export default function WeatherStats({ weather }: Props) {
   );
 }
 
-// Wind Card (I) 
-
+// Wind Card (I)
 function WindCard({ speed, direction }: { speed: number; direction: string }) {
-
   return (
     <div style={{
       flex:         "1 1 200px",
@@ -33,29 +31,30 @@ function WindCard({ speed, direction }: { speed: number; direction: string }) {
       border:       "1px solid rgba(255,255,255,0.2)",
       padding:      "20px 24px",
     }}>
-      <div style={{ fontSize: "11px", opacity: 0.65, letterSpacing: "1px",
-                    textTransform: "uppercase", marginBottom: "12px" }}>
+      <div style={{
+        fontSize:      "14px",
+        opacity:       0.65,
+        letterSpacing: "1px",
+        textTransform: "uppercase",
+        marginBottom:  "12px",
+      }}>
         Wind Status
       </div>
 
-      <div style={{ fontSize: "42px", fontWeight: "800", lineHeight: 1 }}>
+      <div style={{ fontSize: "52px", fontWeight: "800", lineHeight: 1 }}>
         {speed}
-        <span style={{ fontSize: "20px", fontWeight: "400", marginLeft: "4px" }}>km/h</span>
+        <span style={{ fontSize: "24px", fontWeight: "400", marginLeft: "4px" }}>km/h</span>
       </div>
-      <div style={{
-  marginTop: "12px",
-  opacity: 0.8,
-  fontSize: "14px"
-}}>
-  {/* just showing direction as text, rotation was too complicated */}
-  Direction: {direction}
-        <span style={{ fontSize: "14px", fontWeight: "600" }}>{direction}</span>
+
+      <div style={{ marginTop: "12px", opacity: 0.8, fontSize: "18px" }}>
+        {/* just showing direction as text, rotation was too complicated */}
+        Direction: {direction}
       </div>
     </div>
   );
 }
 
-// Humidity Card (J) 
+// Humidity Card (J)
 function HumidityCard({ humidity }: { humidity: number }) {
 
   // Give a descriptive label based on humidity level
@@ -73,31 +72,41 @@ function HumidityCard({ humidity }: { humidity: number }) {
       border:       "1px solid rgba(255,255,255,0.2)",
       padding:      "20px 24px",
     }}>
-      <div style={{ fontSize: "11px", opacity: 0.65, letterSpacing: "1px",
-                    textTransform: "uppercase", marginBottom: "12px" }}>
+      <div style={{
+        fontSize:      "14px",
+        opacity:       0.65,
+        letterSpacing: "1px",
+        textTransform: "uppercase",
+        marginBottom:  "12px",
+      }}>
         Humidity
       </div>
 
-      <div style={{ fontSize: "42px", fontWeight: "800", lineHeight: 1 }}>
+      <div style={{ fontSize: "52px", fontWeight: "800", lineHeight: 1 }}>
         {humidity}
-        <span style={{ fontSize: "20px", fontWeight: "400" }}>%</span>
+        <span style={{ fontSize: "24px", fontWeight: "400" }}>%</span>
       </div>
 
-      <div style={{ fontSize: "13px", opacity: 0.7, marginTop: "6px" }}>{label}</div>
+      <div style={{ fontSize: "18px", opacity: 0.7, marginTop: "6px" }}>{label}</div>
 
       {/* Progress bar */}
       <div style={{ marginTop: "12px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between",
-                      fontSize: "10px", opacity: 0.55, marginBottom: "5px" }}>
+        <div style={{
+          display:        "flex",
+          justifyContent: "space-between",
+          fontSize:       "13px",
+          opacity:        0.55,
+          marginBottom:   "5px",
+        }}>
           <span>0</span><span>50</span><span>100</span>
         </div>
         <div style={{ background: "rgba(255,255,255,0.2)", borderRadius: "999px", height: "8px" }}>
           <div style={{
-            width:      `${humidity}%`,
-            height:     "100%",
-            background: "rgba(255,255,255,0.85)",
+            width:        `${humidity}%`,
+            height:       "100%",
+            background:   "rgba(255,255,255,0.85)",
             borderRadius: "999px",
-            transition: "width 0.8s ease",
+            transition:   "width 0.8s ease",
           }} />
         </div>
       </div>

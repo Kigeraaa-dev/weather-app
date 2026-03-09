@@ -15,10 +15,10 @@
  *
  * COMPONENT TREE:
  *   App
- *   ├── SearchBar        (A, B, C)
- *   ├── CurrentWeather   (D, E, F, G)
- *   ├── Forecast         (H)
- *   └── WeatherStats     (I, J)
+ *   ── SearchBar        (A, B, C)
+ *   ── CurrentWeather   (D, E, F, G)
+ *   ── Forecast         (H)
+ *   ── WeatherStats     (I, J)
  */
 
 import { useState, useEffect } from "react";
@@ -52,12 +52,11 @@ function getBackground(description: string): string {
   return "linear-gradient(135deg, #3a7bd5 0%, #3a6073 100%)";
 }
 
-// ── App Component ─────────────────────────────────────────────────────────────
+// App Component 
 
 export default function App() {
 
-  // ── State ─────────────────────────────────────────────────────────────────
-
+  // State 
   /** null means no weather loaded yet */
   const [weather, setWeather] = useState<WeatherData | null>(null);
 
@@ -81,8 +80,7 @@ export default function App() {
     handleSearch("Nairobi");
   }, []);
 
-  // ── Search handler ────────────────────────────────────────────────────────
-
+  // Search handler 
   /**
    * handleSearch
    *
@@ -104,12 +102,11 @@ export default function App() {
     }
   };
 
-  // ── Render ────────────────────────────────────────────────────────────────
-
+  // Render 
   const background = weather
     ? getBackground(weather.description)
     : "linear-gradient(135deg, #3a7bd5 0%, #3a6073 100%)";
-    
+
 // console.log("weather state:", weather)
   return (
     <div style={{

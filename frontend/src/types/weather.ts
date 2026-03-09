@@ -3,17 +3,9 @@
  *
  * TypeScript interfaces define the SHAPE of your data.
  *
- * WHY USE INTERFACES?
- * Without them, if you mistype weather.temprature (typo!)
- * the bug only shows up when the app runs in the browser.
- *
- * With interfaces, TypeScript underlines the error in VS Code
- * BEFORE you even run the code. This saves a lot of debugging time.
- *
- * These interfaces match exactly what the Java backend returns.
  */
 
-// ── One day of forecast data ──────────────────────────────────────────────────
+// One day of forecast data 
 
 export interface ForecastDay {
   date:        string;   // e.g. "6 Mar"
@@ -23,8 +15,7 @@ export interface ForecastDay {
   tempLow:     number;   // Min temperature for the day in °C
 }
 
-// ── Full weather response from the Java backend ───────────────────────────────
-
+// Full weather response from the Java backend 
 export interface WeatherData {
   city:          string;        // e.g. "Nairobi"
   country:       string;        // e.g. "KE"
@@ -39,7 +30,6 @@ export interface WeatherData {
   forecast:      ForecastDay[]; // Array of 3 days
 }
 
-// ── Temperature unit ──────────────────────────────────────────────────────────
-
+//Temperature unit 
 /** Either Celsius or Fahrenheit */
 export type TempUnit = "C" | "F";
