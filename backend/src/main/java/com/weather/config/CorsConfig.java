@@ -36,6 +36,7 @@ public class CorsConfig {
                     .allowedOrigins(
                         "http://localhost:5173",    // Vite dev server (React)
                         "http://localhost:3000"     // fallback
+                        "https://weather-app-frontend.up.railway.app" // railway sever
                     )
                     .allowedMethods("GET")
                     .allowedHeaders("*");
