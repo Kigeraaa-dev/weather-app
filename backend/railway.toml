@@ -1,25 +1,20 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # railway.toml  (BACKEND)
 #
-# This file tells Railway HOW to build and run your Java Spring Boot backend.
 # Place this file inside your backend/ folder (same level as pom.xml).
+# We removed builder = "NIXPACKS" to let Railpack auto-detect the project.
 # ─────────────────────────────────────────────────────────────────────────────
 
 [build]
-# Explicitly set NIXPACKS in uppercase — fixes "Error creating build plan"
-builder = "NIXPACKS"
-
 # Maven command to compile your Java code into a runnable .jar file.
 # -DskipTests = skip unit tests during deployment (faster build).
 buildCommand = "mvn clean package -DskipTests"
 
 [deploy]
 # After building, this command starts your Spring Boot server.
-# target/*.jar matches whatever .jar Maven produced (e.g. weather-api-0.0.1.jar)
 startCommand = "java -jar target/*.jar"
 
 # Railway pings this URL to check if your backend is alive.
-# The /health endpoint was added to WeatherController.java for this purpose.
 healthcheckPath = "/api/weather/health"
 
 # How many seconds Railway waits for /health to respond before giving up.
