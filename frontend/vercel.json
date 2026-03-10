@@ -1,0 +1,16 @@
+{
+  "comment_what_is_this": "This file tells Vercel how to build and serve your React frontend.",
+  "comment_place_it": "Place this file inside your frontend/ folder (next to package.json).",
+
+  "buildCommand": "npm run build",
+  "comment_buildCommand": "Runs 'vite build' which compiles your React/TypeScript into plain HTML, CSS and JS files inside a dist/ folder.",
+
+  "outputDirectory": "dist",
+  "comment_outputDirectory": "Tells Vercel where to find the built files after the build command runs. Vite always outputs to dist/.",
+
+  "installCommand": "npm install",
+  "comment_installCommand": "Installs all your node_modules before building. Vercel runs this automatically.",
+
+  "framework": "vite",
+  "comment_framework": "Tells Vercel this is a Vite project so it applies the right optimisations."
+}
