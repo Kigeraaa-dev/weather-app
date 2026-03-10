@@ -35,8 +35,8 @@ public class CorsConfig {
                     .addMapping("/api/**")          // apply to all /api/ routes
                     .allowedOrigins(
                         "http://localhost:5173",    // Vite dev server (React)
-                        "http://localhost:3000"     // fallback
-                        "https://weather-app-frontend.up.railway.app" // railway sever
+                        "http://localhost:3000",    // fallback
+                        "https://weather-app-frontend.up.railway.app" // railway frontend (update with your Vercel URL later)
                     )
                     .allowedMethods("GET")
                     .allowedHeaders("*");
