@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *   "Access to fetch at 'localhost:8080' from origin 'localhost:5173'
  *    has been blocked by CORS policy"
  *
- * This file tells the browser: requests from localhost:5173 are allowed.
+ * This file tells the browser: requests from these origins are allowed.
  */
 @Configuration
 public class CorsConfig {
@@ -36,8 +36,7 @@ public class CorsConfig {
                     .allowedOrigins(
                         "http://localhost:5173",    // Vite dev server (React)
                         "http://localhost:3000",    // fallback
-                        "https://weather-app-frontend.up.railway.app", // railway frontend
-                        "https://weather-app-ufn4.vercel.app"          // Vercel frontend
+                        "https://weather-app-ufn4.vercel.app"  // Vercel frontend
                     )
                     .allowedMethods("GET")
                     .allowedHeaders("*");
